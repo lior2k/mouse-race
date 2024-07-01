@@ -4,7 +4,7 @@ export default class RandomPositionGenerator {
     private left: number;
     private right: number;
     private containerHeight = window.innerHeight - 107 - 25;
-    private containerWidth = window.innerWidth - 50;
+    private containerWidth = window.innerWidth - 32 - 143;
     constructor() {
         const maxHeight = 75;
         const elementMaxMovementUp = 100;

@@ -12,7 +12,7 @@ class CollectElement extends Element {
         );
     }
 
-    private checkWinner = (elements: Element[]): boolean => {
+    protected checkWinner = (elements: Element[]): boolean => {
         for (const element of elements) {
             if (!(element instanceof AvoidElement)) {
                 return false;
