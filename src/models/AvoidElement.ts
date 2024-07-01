@@ -12,10 +12,14 @@ class AvoidElement extends Element {
     }
 
     onClick = (
-        setElement: React.Dispatch<React.SetStateAction<Element[]>>,
+        setElement: React.Dispatch<
+            React.SetStateAction<Element[]>
+        > | null = null,
         endGame: (won: boolean) => void,
-        self: Element
+        self: Element | null = null
     ) => {
+        if (setElement && self) {
+        }
         endGame(false);
     };
 }
