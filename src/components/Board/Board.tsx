@@ -1,19 +1,30 @@
 import './Board.css';
+import { useId } from 'react';
 import { useGame } from '../../hooks/useGame';
-import Element from '../../models/Element';
-import ElementComponent from '../Element/ElementComponent';
+import CollectElement from '../Element/CollectElement';
+import AvoidElement from '../Element/AvoidElement';
+import { Position } from '../../utils/CreateRandomElements';
 
 const Board = () => {
     const gameContext = useGame();
-    const elements = gameContext.elements;
-
+    const positions = gameContext.positions;
+    const id = useId();
+    console.log('board');
     return (
         <div className='flex flex-center board-wrapper'>
             {gameContext.isPlaying ? (
                 <div className='game-wrapper'>
-                    {elements.map((element: Element) => (
-                        <ElementComponent element={element} key={element.id} />
-                    ))}
+                    {positions.map((position: Position, index: number) => {
+                        const key = `${id}${index}`;
+                        const random = Math.floor(Math.random() * 2);
+                        const element =
+                            random === 0 ? (
+                                <CollectElement position={position} key={key} />
+                            ) : random === 1 ? (
+                                <AvoidElement position={position} key={key} />
+                            ) : null;
+                        return element;
+                    })}
                 </div>
             ) : gameContext.isGameOver && gameContext.hasWon ? (
                 <form

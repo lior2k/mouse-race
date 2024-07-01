@@ -1,6 +1,5 @@
-import { createContext, useState, useEffect, useId } from 'react';
-import Element from '../models/Element';
-import createElementsArray from '../utils/CreateRandomElements';
+import { createContext, useState, useEffect } from 'react';
+import { createElementsArray, Position } from '../utils/CreateRandomElements';
 import useLeaderboard from '../hooks/useLeaderboard';
 import { IScore } from '../hooks/useLeaderboard';
 
@@ -10,9 +9,10 @@ export type GameProps = {
     hasWon: boolean;
     counter: number;
     scores: IScore[];
-    elements: Element[];
+    positions: Position[];
+    checkWinner: () => boolean;
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-    setElements: React.Dispatch<React.SetStateAction<Element[]>>;
+    setPositions: React.Dispatch<React.SetStateAction<Position[]>>;
     startGame: () => void;
     endGame: (won: boolean) => void;
 };
@@ -22,13 +22,12 @@ export const GameContext = createContext<GameProps>({} as GameProps);
 export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
-    const [elements, setElements] = useState<Element[]>([]);
+    const [positions, setPositions] = useState<Position[]>([]);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isGameOver, setIsGameOver] = useState(false);
     const [hasWon, setHasWon] = useState(false);
     const [counter, setCounter] = useState<number>(0);
     const [scores, addScore] = useLeaderboard();
-    const id = useId();
 
     useEffect(() => {
         if (!isPlaying) {
@@ -38,11 +37,11 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
             setCounter((previousCounter) => previousCounter + 1);
         }, 1000);
         return () => clearTimeout(timeoutId);
-    }, [counter, isPlaying]);
+    }, [counter]);
 
     // initialize elements and reset counter to 0 on start
     const startGame = () => {
-        setElements(createElementsArray(id));
+        setPositions(createElementsArray());
         setCounter(() => 0);
         setIsPlaying(true);
         setIsGameOver(false);
@@ -53,6 +52,16 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsPlaying(false);
         setIsGameOver(gameOver);
         setHasWon(won);
+    };
+
+    const checkWinner = (): boolean => {
+        // for (const element of elements) {
+        //     if (!(element instanceof AvoidElement)) {
+        //         return false;
+        //     }
+        // }
+        // return true;
+        return false;
     };
 
     const onSubmitScore = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -71,9 +80,10 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
                 hasWon,
                 counter,
                 scores,
-                elements,
+                positions,
+                checkWinner,
                 onSubmit: onSubmitScore,
-                setElements,
+                setPositions,
                 startGame,
                 endGame,
             }}
