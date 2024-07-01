@@ -1,0 +1,17 @@
+.green,
+.red {
+    transition: background-color 0.1s linear;
+}
+
+.green:hover,
+.red:hover {
+    opacity: 0.8;
+}
+
+.green:hover {
+    background-color: green;
+}
+
+.red:hover {
+    background-color: red;
+}

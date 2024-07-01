@@ -1,0 +1,15 @@
+#root {
+    position: relative;
+    background-color: var(--light-grey);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 16px;
+    flex: 1;
+}
