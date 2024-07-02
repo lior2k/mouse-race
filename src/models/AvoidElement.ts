@@ -16,7 +16,7 @@ class AvoidElement extends Element {
         setElement: React.Dispatch<
             React.SetStateAction<Element[]>
         > | null = null,
-        checkWinner: null | (() => boolean),
+        checkWinner: null | ((newElements: Element[]) => boolean),
         endGame: (won: boolean) => void,
         self: Element | null = null
     ) => {

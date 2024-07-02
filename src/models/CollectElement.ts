@@ -14,7 +14,7 @@ class CollectElement extends Element {
 
     onClick = (
         setElement: React.Dispatch<React.SetStateAction<Element[]>>,
-        checkWinner: () => boolean,
+        checkWinner: (newElements: Element[]) => boolean,
         endGame: (won: boolean) => void,
         self: Element
     ) => {
@@ -22,7 +22,7 @@ class CollectElement extends Element {
             const newElements = previousElements.filter(
                 (element) => element !== self
             );
-            if (checkWinner()) endGame(true);
+            if (checkWinner(newElements)) endGame(true);
             return newElements;
         });
     };

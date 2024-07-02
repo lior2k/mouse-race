@@ -27,7 +27,7 @@ class ChangeElement extends Element {
 
     onClick = (
         setElement: React.Dispatch<React.SetStateAction<Element[]>>,
-        checkWinner: () => boolean,
+        checkWinner: (newElements: Element[]) => boolean,
         endGame: (won: boolean) => void,
         self: Element
     ): void => {

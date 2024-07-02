@@ -16,7 +16,7 @@ export type GameProps = {
     setElements: React.Dispatch<React.SetStateAction<Element[]>>;
     startGame: () => void;
     endGame: (won: boolean) => void;
-    checkWinner: () => boolean;
+    checkWinner: (newElements: Element[]) => boolean;
 };
 
 export const GameContext = createContext<GameProps>({} as GameProps);
@@ -51,8 +51,8 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
         setHasWon(false);
     };
 
-    const checkWinner = (): boolean => {
-        for (const element of elements) {
+    const checkWinner = (newElements: Element[]): boolean => {
+        for (const element of newElements) {
             if (!(element instanceof AvoidElement)) {
                 return false;
             }
@@ -61,6 +61,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
     };
 
     const endGame = (won: boolean, gameOver: boolean = true) => {
+        console.log('ending game');
         setIsPlaying(false);
         setIsGameOver(gameOver);
         setHasWon(won);
