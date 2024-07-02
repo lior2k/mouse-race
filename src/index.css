@@ -6,6 +6,7 @@
     -moz-osx-font-smoothing: grayscale;
     --light-grey: #242424;
     --dark-grey: #1a1a1a;
+    --border-color: #ffffff41;
     color: #fff;
 }
 

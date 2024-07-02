@@ -7,9 +7,10 @@ import { GameProvider } from './context/GameContext';
 function App() {
     return (
         <GameProvider>
-            <Timer />
+            <Leaderboard />
+
             <div className='main-content'>
-                <Leaderboard />
+                <Timer />
                 <Board />
             </div>
         </GameProvider>

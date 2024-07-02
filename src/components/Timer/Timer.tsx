@@ -14,10 +14,8 @@ const Timer: React.FC = () => {
     }, []);
 
     return (
-        <div className='flex flex-center width-100'>
-            <div className='timer-wrapper'>
-                {formatTime(gameContext.counter)}
-            </div>
+        <div className='flex flex-center timer-wrapper'>
+            <div className='timer'>{formatTime(gameContext.counter)}</div>
         </div>
     );
 };

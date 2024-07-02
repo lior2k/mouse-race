@@ -27,10 +27,11 @@ class ChangeElement extends Element {
 
     onClick = (
         setElement: React.Dispatch<React.SetStateAction<Element[]>>,
+        checkWinner: () => boolean,
         endGame: (won: boolean) => void,
         self: Element
     ): void => {
-        this.current.onClick(setElement, endGame, self);
+        this.current.onClick(setElement, checkWinner, endGame, self);
     };
 
     alternate = (): CollectElement | AvoidElement => {

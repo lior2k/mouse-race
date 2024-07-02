@@ -1,10 +1,10 @@
 import Element from './Element';
-import { Position } from '../interfaces';
+import { Position, Colors } from '../interfaces';
 
 class AvoidElement extends Element {
     constructor(position: Position, id: string) {
         super(
-            { border: '2px solid red' },
+            { border: `2px solid ${Colors.Red}` },
             { animation: 'up_down 6s linear infinite' },
             { height: 25, width: 25, borderRadius: '50%' },
             position,

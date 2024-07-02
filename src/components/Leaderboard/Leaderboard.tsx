@@ -7,7 +7,7 @@ const Leaderboard = () => {
     const { scores } = useGame();
     const id = useId();
     return (
-        <div>
+        <div className='leaderboard-wrapper'>
             <h2>Leaderboard</h2>
             {scores.length > 0 ? (
                 <table>

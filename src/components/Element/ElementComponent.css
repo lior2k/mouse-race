@@ -9,9 +9,9 @@
 }
 
 .green:hover {
-    background-color: green;
+    background-color: #28a745;
 }
 
 .red:hover {
-    background-color: red;
+    background-color: #dc3545;
 }

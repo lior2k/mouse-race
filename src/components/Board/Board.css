@@ -1,10 +1,9 @@
 .board-wrapper {
-    /* position: absolute; */
-    /* inset: 107px 25px 25px 25px; */
-    border: 2px solid #ffffff41;
-    background-color: #1a1a1a;
+    border: 2px solid var(--border-color);
+    background-color: var(--dark-grey);
     flex: 1;
     position: relative;
+    margin: 16px;
 }
 
 .game-wrapper {

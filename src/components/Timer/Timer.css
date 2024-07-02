@@ -1,4 +1,8 @@
 .timer-wrapper {
+    border-bottom: 2px solid var(--border-color);
+}
+
+.timer {
     background-color: var(--dark-grey);
     padding: 1rem;
     margin: 1rem;

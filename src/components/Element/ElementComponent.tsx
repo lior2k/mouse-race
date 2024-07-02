@@ -4,11 +4,15 @@ import Element from '../../models/Element';
 import { useState, useEffect } from 'react';
 import ChangeElement from '../../models/ChangeElement';
 import { useGame } from '../../hooks/useGame';
+import { Colors } from '../../interfaces';
 
 const ElementComponent: React.FC<{
     element: Element;
 }> = ({ element }) => {
-    const colorClassName = element.getColor().border?.toString().split(' ')[2];
+    const colorClassName =
+        element.getColor().border?.toString().split(' ')[2] === Colors.Green
+            ? 'green'
+            : 'red';
     const gameContext = useGame();
     const [changeElement, setChangeElement] = useState<Element>(element);
 

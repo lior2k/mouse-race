@@ -1,3 +1,7 @@
+.leaderboard-wrapper {
+    padding: 8px;
+    border-right: 2px solid var(--border-color);
+}
 h2 {
     width: 143px;
 }
