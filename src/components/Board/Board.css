@@ -10,3 +10,8 @@
     position: absolute;
     inset: 0 0 0 0;
 }
+
+.you-lost-title {
+    text-align: center;
+    color: #dc3545;
+}

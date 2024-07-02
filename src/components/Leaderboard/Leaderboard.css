@@ -7,7 +7,9 @@ h2 {
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 8px 4px;
     max-width: 143px;
+}
+
+th:nth-child(1) {
+    padding-inline-end: 6px;
 }

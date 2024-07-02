@@ -19,6 +19,13 @@ const Board = () => {
                 </div>
             ) : gameContext.isGameOver && gameContext.hasWon ? (
                 <SubmitScoreForm />
+            ) : gameContext.isGameOver && !gameContext.hasWon ? (
+                <div className='flex flex-center column gap-8'>
+                    <h2 className='you-lost-title'>You Lost</h2>
+                    <button onClick={() => gameContext.startGame()}>
+                        Try Again
+                    </button>
+                </div>
             ) : (
                 <button onClick={() => gameContext.startGame()}>Start</button>
             )}
