@@ -1,3 +1,5 @@
+import { Position } from '../interfaces';
+
 export default class RandomPositionGenerator {
     private top: number;
     private bottom: number;
@@ -17,7 +19,7 @@ export default class RandomPositionGenerator {
         this.right = maxWidth + 10;
     }
 
-    public getNewRandomPosition = () => {
+    public getNewRandomPosition = (): Position => {
         const y =
             this.top / 2 +
             Math.round(

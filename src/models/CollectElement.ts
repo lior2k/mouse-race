@@ -1,8 +1,8 @@
-import AvoidElement from './AvoidElement';
 import Element from './Element';
+import { Position } from '../interfaces';
 
 class CollectElement extends Element {
-    constructor(position: { x: number; y: number }, id: string) {
+    constructor(position: Position, id: string) {
         super(
             { border: '2px solid green' },
             { animation: 'left_right 4s linear infinite' },
@@ -12,17 +12,9 @@ class CollectElement extends Element {
         );
     }
 
-    protected checkWinner = (elements: Element[]): boolean => {
-        for (const element of elements) {
-            if (!(element instanceof AvoidElement)) {
-                return false;
-            }
-        }
-        return true;
-    };
-
     onClick = (
         setElement: React.Dispatch<React.SetStateAction<Element[]>>,
+        checkWinner: () => boolean,
         endGame: (won: boolean) => void,
         self: Element
     ) => {
@@ -30,7 +22,7 @@ class CollectElement extends Element {
             const newElements = previousElements.filter(
                 (element) => element !== self
             );
-            if (this.checkWinner(newElements)) endGame(true);
+            if (checkWinner()) endGame(true);
             return newElements;
         });
     };

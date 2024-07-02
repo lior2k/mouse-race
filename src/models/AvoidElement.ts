@@ -1,7 +1,8 @@
 import Element from './Element';
+import { Position } from '../interfaces';
 
 class AvoidElement extends Element {
-    constructor(position: { x: number; y: number }, id: string) {
+    constructor(position: Position, id: string) {
         super(
             { border: '2px solid red' },
             { animation: 'up_down 6s linear infinite' },
@@ -15,10 +16,11 @@ class AvoidElement extends Element {
         setElement: React.Dispatch<
             React.SetStateAction<Element[]>
         > | null = null,
+        checkWinner: null | (() => boolean),
         endGame: (won: boolean) => void,
         self: Element | null = null
     ) => {
-        if (setElement && self) {
+        if (setElement && self && checkWinner) {
         }
         endGame(false);
     };

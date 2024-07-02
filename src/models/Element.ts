@@ -1,17 +1,19 @@
+import { Position } from '../interfaces';
+
 abstract class Element {
     protected size: number;
     protected color: React.CSSProperties;
     protected behaviour: React.CSSProperties;
     protected shape: React.CSSProperties;
 
-    public position: { x: number; y: number };
+    public position: Position;
     public id: string;
 
     constructor(
         color: React.CSSProperties,
         behaviour: React.CSSProperties,
         shape: React.CSSProperties,
-        position: { x: number; y: number },
+        position: Position,
         id: string
     ) {
         this.size = Math.ceil(Math.random() * 3);
@@ -47,7 +49,6 @@ abstract class Element {
             ...this.getShape(),
             ...this.getColor(),
             ...this.getBehaviour(),
-            cursor: 'pointer',
         };
     };
 
@@ -57,6 +58,7 @@ abstract class Element {
     */
     public abstract onClick(
         setElement: React.Dispatch<React.SetStateAction<Element[]>>,
+        checkWinner: () => boolean,
         endGame: (won: boolean) => void,
         self: Element
     ): void;

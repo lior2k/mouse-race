@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';
-
-export interface IScore {
-    name: string;
-    score: number;
-}
+import { IScore } from '../interfaces';
 
 export const useLeaderboard = (): [
     scores: IScore[],

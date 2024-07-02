@@ -8,8 +8,7 @@ import { useGame } from '../../hooks/useGame';
 const ElementComponent: React.FC<{
     element: Element;
 }> = ({ element }) => {
-    const color = element.getColor().border?.toString().split(' ')[2];
-
+    const colorClassName = element.getColor().border?.toString().split(' ')[2];
     const gameContext = useGame();
     const [changeElement, setChangeElement] = useState<Element>(element);
 
@@ -26,19 +25,21 @@ const ElementComponent: React.FC<{
 
     return (
         <div
-            className={color}
+            className={colorClassName}
             onClick={() =>
                 element.onClick(
                     gameContext.setElements,
+                    gameContext.checkWinner,
                     gameContext.endGame,
                     element
                 )
             }
             style={{
                 ...element.getStyle(),
-                position: 'absolute',
                 top: element.position.y,
                 left: element.position.x,
+                position: 'absolute',
+                cursor: 'pointer',
             }}
         ></div>
     );

@@ -4,7 +4,6 @@ import { useGame } from '../../hooks/useGame';
 
 const Timer: React.FC = () => {
     const gameContext = useGame();
-
     const formatTime = useCallback((seconds: number) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;

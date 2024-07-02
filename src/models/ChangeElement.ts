@@ -1,13 +1,14 @@
 import Element from './Element';
 import CollectElement from './CollectElement';
 import AvoidElement from './AvoidElement';
+import { Position } from '../interfaces';
 
 class ChangeElement extends Element {
     public current: CollectElement | AvoidElement;
     private collect: CollectElement;
     private avoid: AvoidElement;
 
-    constructor(position: { x: number; y: number }, id: string) {
+    constructor(position: Position, id: string) {
         super(
             {},
             { animation: 'rotate 20s linear infinite' },

@@ -11,25 +11,3 @@
     position: absolute;
     inset: 0 0 0 0;
 }
-
-form {
-    padding: 16px;
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-    background-color: var(--light-grey);
-    border-radius: 16px;
-    box-shadow: 0 0 4px 2px #c9c3c3;
-    max-width: 220px;
-    max-height: 270px;
-    flex: 1;
-}
-
-input {
-    padding: 4px;
-    color: #000;
-}
-
-.submit {
-    background-color: var(--dark-grey);
-}

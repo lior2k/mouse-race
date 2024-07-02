@@ -2,7 +2,8 @@ import { createContext, useState, useEffect, useId } from 'react';
 import Element from '../models/Element';
 import createElementsArray from '../utils/CreateRandomElements';
 import useLeaderboard from '../hooks/useLeaderboard';
-import { IScore } from '../hooks/useLeaderboard';
+import { IScore } from '../interfaces';
+import AvoidElement from '../models/AvoidElement';
 
 export type GameProps = {
     isPlaying: boolean;
@@ -15,6 +16,7 @@ export type GameProps = {
     setElements: React.Dispatch<React.SetStateAction<Element[]>>;
     startGame: () => void;
     endGame: (won: boolean) => void;
+    checkWinner: () => boolean;
 };
 
 export const GameContext = createContext<GameProps>({} as GameProps);
@@ -49,6 +51,15 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
         setHasWon(false);
     };
 
+    const checkWinner = (): boolean => {
+        for (const element of elements) {
+            if (!(element instanceof AvoidElement)) {
+                return false;
+            }
+        }
+        return true;
+    };
+
     const endGame = (won: boolean, gameOver: boolean = true) => {
         setIsPlaying(false);
         setIsGameOver(gameOver);
@@ -76,6 +87,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
                 setElements,
                 startGame,
                 endGame,
+                checkWinner,
             }}
         >
             {children}
