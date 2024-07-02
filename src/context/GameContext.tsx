@@ -25,6 +25,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
     const [elements, setElements] = useState<Element[]>([]);
+    const [avoidElementCount, setAvoidElementCount] = useState<number>(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isGameOver, setIsGameOver] = useState(false);
     const [hasWon, setHasWon] = useState(false);
@@ -44,24 +45,24 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
 
     // initialize elements and reset counter to 0 on start
     const startGame = () => {
-        setElements(createElementsArray(id));
+        const newElements: Element[] = createElementsArray(id);
+        setElements(newElements);
         setCounter(() => 0);
+        setAvoidElementCount(
+            newElements.filter(
+                (element: Element) => element instanceof AvoidElement
+            ).length
+        );
         setIsPlaying(true);
         setIsGameOver(false);
         setHasWon(false);
     };
 
     const checkWinner = (newElements: Element[]): boolean => {
-        for (const element of newElements) {
-            if (!(element instanceof AvoidElement)) {
-                return false;
-            }
-        }
-        return true;
+        return newElements.length === avoidElementCount;
     };
 
     const endGame = (won: boolean, gameOver: boolean = true) => {
-        console.log('ending game');
         setIsPlaying(false);
         setIsGameOver(gameOver);
         setHasWon(won);
